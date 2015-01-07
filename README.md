@@ -1,11 +1,7 @@
 Some parts of this documentation require knowledge about CouchDB IDs, revisions, and views.
 
-<<<<<<< HEAD
 ![Apache 2](http://img.shields.io/badge/license-Apache%202-red.svg)
 
-
-=======
->>>>>>> d370b02f29ca299c45ae37b5edf07d533c3864f8
 When shall I use CouchRepository?
 ==================================
 
