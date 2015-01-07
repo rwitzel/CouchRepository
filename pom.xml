@@ -294,11 +294,9 @@
         <compilerArgument>-parameters</compilerArgument>
       </configuration>
     </plugin>
-         
    </plugins>
 
   </build>
-
 
 
   <profiles>
@@ -338,7 +336,6 @@
     </profile>
   
   </profiles>
-
 
 
   <licenses>
