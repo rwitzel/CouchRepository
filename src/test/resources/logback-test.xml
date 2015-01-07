@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p | %t | %-55logger{55} | %m | %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="org.ektorp">
+        <level value="DEBUG" />
+    </logger>
+
+    <logger name="org.springframework.data.document.couchdb.adapter.ektorp">
+        <level value="DEBUG" />
+    </logger>
+
+<!--     <logger name="org.ektorp.support.CouchDbRepositorySupport"> -->
+<!--         <level value="DEBUG" /> -->
+<!--     </logger> -->
+
+<!--     <logger name="org.ektorp.impl.StdCouchDbConnector"> -->
+<!--         <level value="DEBUG" /> -->
+<!--     </logger> -->
+
+    <root>
+        <level value="INFO" />
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
