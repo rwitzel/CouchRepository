@@ -1,5 +1,7 @@
 Some parts of this documentation require knowledge about CouchDB IDs, revisions, and views.
 
+![Travis build status](https://travis-ci.org/rwitzel/CouchRepository.svg)
+![Coveralls coverage status](https://img.shields.io/coveralls/rwitzel/CouchRepository.svg)
 ![Apache 2](http://img.shields.io/badge/license-Apache%202-red.svg)
 
 When shall I use CouchRepository?
