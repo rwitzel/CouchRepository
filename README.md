@@ -11,7 +11,7 @@ There are two main use cases.
 
 A. You choose CouchRepository when 
 
-* you are going to use Spring Data for a new project and 
+* you are going to use [Spring Data](http://projects.spring.io/spring-data/) for a new project and 
 * you do not want to decide about the eventual database solution yet.
 
 In this case, you make your new application configurable so that one can easily switch between different persistence solutions (SQL, MongoDB, CouchDB).
@@ -19,7 +19,7 @@ In this case, you make your new application configurable so that one can easily 
 B. You choose CouchRepository when 
 
 * you want to stick with the familiar Spring Data framework, and 
-* you are going to work with an existing CouchDB database, and 
+* you are going to work with an existing [CouchDB](http://couchdb.apache.org/) database, and 
 * you need only basic CRUD operations and simple view queries in the first place.
 
 As soon as you want to use more sophisticated operations on the CouchDB, you will directly use the underlying Java CouchDB drivers, namely LightCouch or Ektorp.
