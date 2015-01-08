@@ -17,7 +17,7 @@ public interface EntityInformation<T, ID extends Serializable> {
     /**
      * Converts the given ID to a CouchDB identifier.
      * 
-     * @param id
+     * @param id the ID of the entity 
      * @return Returns the transformed identifier.
      */
     String toCouchId(ID id);
@@ -25,7 +25,7 @@ public interface EntityInformation<T, ID extends Serializable> {
     List<String> toCouchIds(Iterable<ID> iter);
 
     /**
-     * @param entity
+     * @param entity the entity
      * @return Returns the CouchDb identifier of the entity.
      */
     String getCouchId(T entity);
@@ -33,13 +33,13 @@ public interface EntityInformation<T, ID extends Serializable> {
     /**
      * Sets the identifier of the entity, i.e. transforms the given CouchDb identifier if necessary.
      * 
-     * @param entity
-     * @param couchId
+     * @param entity the entity
+     * @param couchId the CouchID for the entity
      */
     void setId(T entity, String couchId);
 
     /**
-     * @param entity
+     * @param entity the entity
      * @return Returns the revision of the given entity.
      */
     String getRev(T entity);
@@ -47,13 +47,13 @@ public interface EntityInformation<T, ID extends Serializable> {
     /**
      * Sets the revision in the given entity.
      * 
-     * @param entity
-     * @param rev
+     * @param entity the entity
+     * @param rev the new revision for the entity 
      */
     void setRev(T entity, String rev);
 
     /**
-     * @param entity
+     * @param entity the entity
      * @return Returns true if the given entity is new, i.e. it does not have a revision.
      */
     boolean isNew(T entity);

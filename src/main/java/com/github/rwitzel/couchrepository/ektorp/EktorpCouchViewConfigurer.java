@@ -15,8 +15,8 @@ public class EktorpCouchViewConfigurer {
     /**
      * Configures Ektorp's {@link ViewQuery} with the given {@link ViewParams}.
      * 
-     * @param view
-     * @param params
+     * @param view the Ektorp object to be configured
+     * @param params the parameters that shall be used 
      */
     public void configure(ViewQuery view, ViewParams params) {
         if (params.getAttachments() != null) {

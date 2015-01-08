@@ -35,14 +35,14 @@ import com.github.rwitzel.couchrepository.api.exceptions.BulkOperationException;
 /**
  * This implementation of {@link CouchDbCrudRepository} uses Ektorp's {@link CouchDbConnector}.
  * <p>
- * This implementation requires a special view in a design document. EXAMPLE: <code><pre>
+ * This implementation requires a special view in a design document. EXAMPLE: <code>
   "views" : {
     "by_id" : {
       "map" : "function(doc) { if(doc.type == '...') {emit(doc._id, { _id : doc._id, _rev: doc._rev } )} }",
       "reduce" : "_count"
     }
   }
- </pre></code>
+ </code>
  * <p>
  * Take care when using {@link #deleteAll()} because it loads the IDs and revisions of all documents of the
  * abovementioned view at once, then deletes the documents.
@@ -56,7 +56,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
     protected EktorpCouchViewConfigurer viewBuilder = new EktorpCouchViewConfigurer();
 
     protected Class<T> type;
-    
+
     protected EntityInformation<T, ID> ei;
 
     protected boolean allOrNothing;
@@ -73,7 +73,8 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         this(type, false, db, new ObjectMapper(), ei);
     }
 
-    public EktorpCrudRepository(Class<T> type, boolean allOrNothing, CouchDbConnector db, ObjectMapper objectMapper, EntityInformation<T, ID> ei) {
+    public EktorpCrudRepository(Class<T> type, boolean allOrNothing, CouchDbConnector db, ObjectMapper objectMapper,
+            EntityInformation<T, ID> ei) {
         super();
         this.type = type;
         this.ei = ei;
@@ -250,6 +251,9 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
      * Transforms a Ektorp-specific view result to CouchRepository's view result.
      * 
      * @param viewResult
+     *            the Ektorp-specific view result
+     * @param viewParams
+     *            the parameters inform about the return type
      * @return Returns the transformed view result.
      */
     protected ViewResult toViewResult(org.ektorp.ViewResult viewResult, ViewParams viewParams) {
@@ -277,8 +281,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
     private String id(Row row) {
         try {
             return row.getId();
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             return null; // happens when reduce = true -> TODO Ektorp feature request
         }
     }

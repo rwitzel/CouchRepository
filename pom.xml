@@ -20,7 +20,6 @@
     <ektorp.version>1.4.2</ektorp.version>
     <org.slf4j-version>1.7.7</org.slf4j-version>
 
-    <maven.javadoc.failOnError>false</maven.javadoc.failOnError>
   </properties>
 
   <name>${project.groupId}:${project.artifactId}</name>

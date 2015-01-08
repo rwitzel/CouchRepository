@@ -24,6 +24,7 @@ public class CouchDbCrudRepositoryFactory {
      *            An object that implements custom finder methods. Can be null.
      * @param repositoryType
      *            the interface of the returned repository
+     * @param <T> the return type
      * @return Returns the created repository.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })

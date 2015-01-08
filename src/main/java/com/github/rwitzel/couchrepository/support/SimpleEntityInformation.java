@@ -9,7 +9,7 @@ import com.github.rwitzel.couchrepository.api.EntityInformation;
  * 
  * @author rwitzel
  *
- * @param <T>
+ * @param <T> the type of the handled entities
  */
 public class SimpleEntityInformation<T> extends GenericEntityInformation<T, String>{
     

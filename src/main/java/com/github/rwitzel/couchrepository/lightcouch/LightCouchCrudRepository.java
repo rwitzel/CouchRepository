@@ -30,14 +30,14 @@ import com.github.rwitzel.couchrepository.support.GenericEntityInformation;
 /**
  * This implementation of {@link CouchDbCrudRepository} uses LightCouch's {@link CouchDbClient}.
  * <p>
- * This implementation requires a special view in a design document. EXAMPLE: <code><pre>
+ * This implementation requires a special view in a design document. EXAMPLE: <code>
   "views" : {
     "by_id" : {
       "map" : "function(doc) { if(doc.type == '...') {emit(doc._id, { _id : doc._id, _rev: doc._rev } )} }",
       "reduce" : "_count"
     }
   }
- </pre></code>
+ </code>
  * <p>
  * Take care when using {@link #deleteAll()} because it loads the IDs and revisions of all documents of the
  * abovementioned view at once, then deletes the documents.
@@ -159,9 +159,8 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
     }
 
     /**
-     * @param response
-     * @param entity
-     *            Null if the entity shall not be updated
+     * @param response the response
+     * @param entity Null if the entity shall not be updated
      */
     protected void handleResponse(Response response, T entity) {
         if (response.getError() != null) {
@@ -263,7 +262,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
     /**
      * Transforms a LightCouch-specific view result to CouchRepository's view result.
      * 
-     * @param viewResult
+     * @param viewResult the original view result
      * @return Returns the transformed view result.
      */
     @SuppressWarnings({ "rawtypes", "unchecked" })
