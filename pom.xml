@@ -162,6 +162,12 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- for the (design) document loader -->
+    <dependency>
+      <groupId>org.yaml</groupId>
+      <artifactId>snakeyaml</artifactId>
+    </dependency>
+
   </dependencies>
 
   <dependencyManagement>
@@ -281,6 +287,12 @@
         <groupId>org.slf4j</groupId>
         <artifactId>jcl-over-slf4j</artifactId>
         <version>${org.slf4j-version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>1.14</version>
       </dependency>
 
     </dependencies>

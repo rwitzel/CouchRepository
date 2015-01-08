@@ -63,9 +63,9 @@ public class EktorpTestConfiguration {
 
         DocumentLoader loader = new DocumentLoader(new EktorpCrudRepository(Map.class, db));
 
-        loader.load(getClass().getResourceAsStream("../Product.json"));
-        loader.load(getClass().getResourceAsStream("../Manufacturer.json"));
-        loader.load(getClass().getResourceAsStream("../Exotic.json"));
+        loader.loadYaml(getClass().getResourceAsStream("../Product.yaml"));
+        loader.loadJson(getClass().getResourceAsStream("../Manufacturer.json"));
+        loader.loadJson(getClass().getResourceAsStream("../Exotic.json"));
 
         return "OK"; // anything
     }
