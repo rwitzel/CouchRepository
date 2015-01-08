@@ -310,9 +310,8 @@
       <configuration>
         <source>${java-version}</source>
         <target>${java-version}</target>
-        <!-- needed to get parameter names (in tests) -->
-<!--         <compilerArgument>-g</compilerArgument> -->
-        <compilerArgument>-parameters</compilerArgument>
+        <!-- needed to get parameter names (in tests), -g is for Java7, -parameters is for Java8 -->
+        <compilerArgument>-g</compilerArgument>
       </configuration>
     </plugin>
     
@@ -322,6 +321,27 @@
 
 
   <profiles>
+  
+    <profile>
+      <id>java8</id>
+      <activation>
+        <jdk>1.8</jdk>
+      </activation>
+    
+      <build>
+         <plugins>
+           <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+              <compilerArgument>-parameters</compilerArgument><!--  for Java 8 -->
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  
+  
     <profile>
       <id>coverage</id>
     
