@@ -253,7 +253,8 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
                     viewParams.getValueType(), viewParams.getDocumentType());
             viewResult = toViewResult(lightCouchViewResult);
         } catch (NoDocumentException e) {
-            viewResult = new ViewResult(); // best effort -> TODO LightCouch feature request
+            // best effort -> TODO LightCouch feature request -> pull request sent 
+            viewResult = new ViewResult(); 
         }
 
         return transformViewResult(viewResult, viewParams.getReturnType());

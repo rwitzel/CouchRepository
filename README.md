@@ -177,7 +177,7 @@ At the moment Sohva does not provide an API that can be easily used by Java appl
 
 **Q. The exception com.thoughtworks.paranamer.ParameterNamesNotFoundException is thrown. What can I do?**
 
-A. [Paranamer](https://github.com/paul-hammant/paranamer) is used to identify the names of method parameters. Got to the project page to get more information about the exception.
+A. [Paranamer](https://github.com/paul-hammant/paranamer) is used to identify the names of method parameters. Go to the project page to get more information about the exception.
 
 For Java 7 you could try the `AnnotationParanamer`. In this case you have to add JSR-330 to your classpath (javax.inject:javax.inject:1).
 

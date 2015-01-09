@@ -96,7 +96,9 @@ public class ViewParamsMerger {
                 && viewParams.getDocumentType() != null) {
             validationErrors.add("includeDocs is false but the document type is not null");
         }
-        if (viewParams.getKeyType() == null) { // null should be allowed (reduce=true) TODO LightCouch feature request!
+        
+        // null should be allowed (reduce=true) TODO LightCouch feature request! -> pull request is sent
+        if (viewParams.getKeyType() == null) { 
             validationErrors.add("keyType is null");
         }
         if (viewParams.getValueType() == null) {

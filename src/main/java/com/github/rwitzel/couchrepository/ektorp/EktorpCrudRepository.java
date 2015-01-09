@@ -282,7 +282,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         try {
             return row.getId();
         } catch (NullPointerException e) {
-            return null; // happens when reduce = true -> TODO Ektorp feature request
+            return null; // happens when reduce = true -> TODO Ektorp feature request -> pull request is sent
         }
     }
 
