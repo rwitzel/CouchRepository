@@ -17,12 +17,14 @@ import com.github.rwitzel.couchrepository.api.CouchDbCrudRepositoryFactory;
 import com.github.rwitzel.couchrepository.api.ProductRepository;
 import com.github.rwitzel.couchrepository.api.ProductRepositoryCustom;
 import com.github.rwitzel.couchrepository.api.ProductRepositoryCustomImpl;
+import com.github.rwitzel.couchrepository.internal.ViewParamsMerger;
 import com.github.rwitzel.couchrepository.model.Exotic;
 import com.github.rwitzel.couchrepository.model.ExoticEntityInformation;
 import com.github.rwitzel.couchrepository.model.ExoticId;
 import com.github.rwitzel.couchrepository.model.Manufacturer;
 import com.github.rwitzel.couchrepository.model.Product;
 import com.github.rwitzel.couchrepository.support.DocumentLoader;
+import com.thoughtworks.paranamer.AnnotationParanamer;
 
 /**
  * This configuration uses the the database "/ektorp-integration-tests/", creates or updates the standard design
@@ -33,7 +35,8 @@ import com.github.rwitzel.couchrepository.support.DocumentLoader;
 @Configuration
 public class EktorpTestConfiguration {
 
-    private CouchDbCrudRepositoryFactory factory = new CouchDbCrudRepositoryFactory();
+    private CouchDbCrudRepositoryFactory factory = new CouchDbCrudRepositoryFactory(new ViewParamsMerger(
+            new AnnotationParanamer()));
 
     @Bean
     public StdCouchDbConnector connector() throws Exception {

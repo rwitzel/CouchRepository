@@ -13,6 +13,7 @@ import org.springframework.util.ReflectionUtils;
 
 import com.github.rwitzel.couchrepository.api.ProductRepository;
 import com.github.rwitzel.couchrepository.api.ViewParams;
+import com.thoughtworks.paranamer.AnnotationParanamer;
 
 /**
  * Tests {@link ViewParamsMerger}.
@@ -21,7 +22,7 @@ import com.github.rwitzel.couchrepository.api.ViewParams;
  */
 public class ViewParamsMergerTest {
 
-    private ViewParamsMerger merger = new ViewParamsMerger();
+    private ViewParamsMerger merger = new ViewParamsMerger(new AnnotationParanamer());
 
     private ViewParams passedParams = new ViewParams();
     

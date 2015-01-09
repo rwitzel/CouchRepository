@@ -24,7 +24,8 @@ public class ViewParamsMerger {
     protected Paranamer paranamer;
 
     public ViewParamsMerger() {
-        this(new CachingParanamer(new AdaptiveParanamer(new Java8Paranamer(), new DefaultParanamer(),
+        this(new CachingParanamer(new AdaptiveParanamer(
+                /* new Java8Paranamer(), new AnnotationParanamer(), */new DefaultParanamer(),
                 new BytecodeReadingParanamer())));
     }
 
@@ -95,7 +96,7 @@ public class ViewParamsMerger {
                 && viewParams.getDocumentType() != null) {
             validationErrors.add("includeDocs is false but the document type is not null");
         }
-        if (viewParams.getKeyType() == null) { // null should be allowed (reduce=true) TODO LightCouch feature request! 
+        if (viewParams.getKeyType() == null) { // null should be allowed (reduce=true) TODO LightCouch feature request!
             validationErrors.add("keyType is null");
         }
         if (viewParams.getValueType() == null) {

@@ -58,10 +58,13 @@ This view must provide ID and revision for each entity of the given type. The re
         }
     } 
 
-One way to load the design document into the database is `DocumentLoader` but you can use any other mean, of course. You can use the repository as soon the design document  is available in the database.
+One way to load the design document into the database is `DocumentLoader` but you can use any other mean, of course.
+You can use the repository as soon the design document is available in the database.
 
     DocumentLoader loader = new DocumentLoader(new EktorpCrudRepository(Map.class, db));
-    loader.load(getClass().getResourceAsStream("../Product.json")); // design document Product.json is taken from the classpath
+    loader.loadJson(getClass().getResourceAsStream("../Product.json")); // design document Product.json is taken from the classpath
+
+In case you prefer YAML documents, you can use the method `loadYaml` instead of `loadJson`.  
     
 Finally, your Java-based Spring configuration might look like this.
 
@@ -92,7 +95,7 @@ If you want to use the automatic implementation of finder methods, you create an
 
 The method parameter `viewParams` allow you to specify arbitrary parameters for the view query.
 But usually you will add more parameters to the method signature because they cover your main use cases, here: `key`.
-Parameters set in `viewParams` do not override parameters that are contained in the method signature, i.e the key in `viewParams` is ignored.  
+Parameters set in `viewParams` do not override parameters that are contained in the method signature, i.e the key in `viewParams` is ignored. *Attention!* Please read more about method parameter name detection in section Q&A.   
 
 To actually use the methods, your design document must contain a view `findByComment` that is appropriate for your methods.  
 
@@ -174,7 +177,15 @@ At the moment Sohva does not provide an API that can be easily used by Java appl
 
 **Q. The exception com.thoughtworks.paranamer.ParameterNamesNotFoundException is thrown. What can I do?**
 
-A. Paranamer is used to identify the name of method parameters. See https://github.com/paul-hammant/paranamer to get more information about the exception. Be aware that even for JDK 8 you have to activate a compiler option: `-parameters`.
+A. [Paranamer](https://github.com/paul-hammant/paranamer) is used to identify the names of method parameters. Got to the project page to get more information about the exception.
+
+For Java 7 you could try the `AnnotationParanamer`. In this case you have to add JSR-330 to your classpath (javax.inject:javax.inject:1).
+
+For Java 8 try [Java8Paranamer](https://github.com/rwitzel/Java8Paranamer). This is one class you can copy to your source code. Be aware that even for JDK 8 you have to activate a compiler option: `-parameters`.
+
+Then For both JDKs you will create the CouchDbCrudRepositoryFactory a bit differently.
+
+    factory = new CouchDbCrudRepositoryFactory(new ViewParamsMerger(.. your paranamer here...));
 
 **Q. Do I have to modify my entity classes to make them compatible for CouchDB?**
 

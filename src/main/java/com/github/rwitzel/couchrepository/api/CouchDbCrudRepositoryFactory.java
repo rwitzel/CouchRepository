@@ -15,6 +15,17 @@ import com.github.rwitzel.couchrepository.internal.ViewParamsMerger;
  */
 public class CouchDbCrudRepositoryFactory {
 
+    private ViewParamsMerger viewParamsMerger;
+
+    public CouchDbCrudRepositoryFactory() {
+        this(new ViewParamsMerger());
+    }
+
+    public CouchDbCrudRepositoryFactory(ViewParamsMerger viewParamsMerger) {
+        super();
+        this.viewParamsMerger = viewParamsMerger;
+    }
+
     /**
      * Creates a repository that implements the given interface.
      * 
@@ -32,7 +43,7 @@ public class CouchDbCrudRepositoryFactory {
             Class<?> repositoryType) {
 
         QueryMethodHandler handler = new QueryMethodHandler(underlyingRepository, customRepository,
-                new ViewParamsMerger());
+                viewParamsMerger);
         return (T) Proxy.newProxyInstance(repositoryType.getClassLoader(), new Class<?>[] { repositoryType }, handler);
     }
 

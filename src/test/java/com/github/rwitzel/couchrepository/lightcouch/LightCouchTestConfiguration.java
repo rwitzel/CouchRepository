@@ -12,6 +12,7 @@ import com.github.rwitzel.couchrepository.api.CouchDbCrudRepositoryFactory;
 import com.github.rwitzel.couchrepository.api.ProductRepository;
 import com.github.rwitzel.couchrepository.api.ProductRepositoryCustom;
 import com.github.rwitzel.couchrepository.api.ProductRepositoryCustomImpl;
+import com.github.rwitzel.couchrepository.internal.ViewParamsMerger;
 import com.github.rwitzel.couchrepository.model.Exotic;
 import com.github.rwitzel.couchrepository.model.ExoticEntityInformation;
 import com.github.rwitzel.couchrepository.model.ExoticId;
@@ -19,11 +20,13 @@ import com.github.rwitzel.couchrepository.model.Manufacturer;
 import com.github.rwitzel.couchrepository.model.Product;
 import com.github.rwitzel.couchrepository.support.DocumentLoader;
 import com.google.gson.GsonBuilder;
+import com.thoughtworks.paranamer.AnnotationParanamer;
 
 @Configuration
 public class LightCouchTestConfiguration {
 
-    private CouchDbCrudRepositoryFactory factory = new CouchDbCrudRepositoryFactory();
+    private CouchDbCrudRepositoryFactory factory = new CouchDbCrudRepositoryFactory(new ViewParamsMerger(
+            new AnnotationParanamer()));
 
     @Bean(destroyMethod = "shutdown")
     public CouchDbClient couchDbClient() {
