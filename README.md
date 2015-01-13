@@ -30,12 +30,26 @@ How do I use CouchRepository?
 
 You may want to checkout the source code and have a look at the tests to find working examples for both the Ektorp and LightCouch drivers.
 
+Prerequisites
+-------------
+
+CouchRepository requires Java 7 or higher.
+
 Basics
 ------
 
 Here is a short example that assumes you use Ektorp as CouchDB driver. The code for LightCouch is almost the same. 
 
-First of all you have to set up a `CouchDbConnector` as described by the Ektorp documentation. 
+First of all you add the needed dependencies to your project.
+The dependencies for Ektorp must be added explicitly because you can choose between Ektorp and LightCouch.
+
+    compile 'com.github.rwitzel:couchrepository-core:0.9.1'
+    compile 'org.ektorp:org.ektorp:1.4.2'
+    compile 'org.ektorp:org.ektorp.spring:1.4.2'
+
+Have a look a the [CouchRepository Example](https://github.com/rwitzel/CouchRepository-example) to get a full list of the needed dependencies.    
+
+Then you set up a `CouchDbConnector` as described by the Ektorp documentation. 
 
     CouchDbConnector db = ...
 
@@ -64,7 +78,8 @@ You can use the repository as soon the design document is available in the datab
     DocumentLoader loader = new DocumentLoader(new EktorpCrudRepository(Map.class, db));
     loader.loadJson(getClass().getResourceAsStream("../Product.json")); // design document Product.json is taken from the classpath
 
-In case you prefer YAML documents, you can use the method `loadYaml` instead of `loadJson`.  
+In case you prefer YAML documents, you can use the method `loadYaml` instead of `loadJson`.
+In YAML documents you don't have to care about the formatting of the contained Javascript functions.  
     
 Finally, your Java-based Spring configuration might look like this.
 
