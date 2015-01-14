@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.data.repository.CrudRepository;
 
 /**
- * Limitation: At the moment only IDs of type String are supported.
+ * This {@link CrudRepository} for CouchDB databases allows you to query views.
  * 
  * @author rwitzel
  * @param <T> See type parameter in {@link CrudRepository}

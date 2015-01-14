@@ -198,7 +198,7 @@ For Java 7 you could try the `AnnotationParanamer`. In this case you have to add
 
 For Java 8 try [Java8Paranamer](https://github.com/rwitzel/Java8Paranamer). This is one class you can copy to your source code. Be aware that even for JDK 8 you have to activate a compiler option: `-parameters`.
 
-Then For both JDKs you will create the CouchDbCrudRepositoryFactory a bit differently.
+Then configure a custom CouchDbCrudRepositoryFactory with your chosen paranamer.
 
     factory = new CouchDbCrudRepositoryFactory(new ViewParamsMerger(.. your paranamer here...));
 
