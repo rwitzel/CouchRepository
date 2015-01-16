@@ -104,6 +104,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
         try {
             return couchDbClient.find(type, ei.toCouchId(id));
         } catch (NoDocumentException e) {
+            logger.debug("document with ID " + id + " not found", e);
             return null;
         }
     }
@@ -253,6 +254,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
                     viewParams.getValueType(), viewParams.getDocumentType());
             viewResult = toViewResult(lightCouchViewResult);
         } catch (NoDocumentException e) {
+            logger.debug("no documents found for view parameters  " + viewParams, e);
             // best effort -> TODO LightCouch feature request -> pull request sent 
             viewResult = new ViewResult(); 
         }

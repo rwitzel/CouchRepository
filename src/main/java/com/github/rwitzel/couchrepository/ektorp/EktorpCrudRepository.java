@@ -112,6 +112,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         try {
             return db.get(type, ei.toCouchId(id));
         } catch (DocumentNotFoundException e) {
+            logger.debug("document with ID " + id + " not found", e);
             return null;
         }
     }
