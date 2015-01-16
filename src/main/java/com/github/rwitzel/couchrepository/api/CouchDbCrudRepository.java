@@ -16,7 +16,7 @@ public interface CouchDbCrudRepository<T, ID extends Serializable> extends CrudR
     /**
      * Queries the database with the given parameters.
      * 
-     * @param viewParams
+     * @param viewParams the query parameters
      * @param <R> the return type, depends on {@link ViewParams#getReturnType()}.
      * @return Returns the result of the query. The type of the return value depends on {@link ViewParams#getReturnType()}.
      */
