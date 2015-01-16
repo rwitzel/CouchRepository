@@ -1,7 +1,6 @@
-package com.github.rwitzel.couchrepository.lightcouch;
+package com.github.rwitzel.couchrepository.cloudant;
 
-import org.lightcouch.View;
-
+import com.cloudant.client.api.View;
 import com.github.rwitzel.couchrepository.api.ViewParams;
 import com.github.rwitzel.couchrepository.api.exceptions.UnsupportedViewParameterException;
 
@@ -10,12 +9,12 @@ import com.github.rwitzel.couchrepository.api.exceptions.UnsupportedViewParamete
  * 
  * @author rwitzel
  */
-public class LightCouchViewConfigurer {
+public class CloudantViewConfigurer {
 
     /**
-     * Configures LightCouch's {@link View} with the given {@link ViewParams}.
+     * Configures Cloudant's {@link View} with the given {@link ViewParams}.
      * 
-     * @param view the LightCouch object to be configured
+     * @param view the Cloudant object to be configured
      * @param params the parameters that shall be used 
      */
     public void configure(View view, ViewParams params) {
