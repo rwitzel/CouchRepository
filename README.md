@@ -196,13 +196,13 @@ A. [Paranamer](https://github.com/paul-hammant/paranamer) is used to identify th
 
 For Java 7 you could try the `AnnotationParanamer`. In this case you have to add JSR-330 to your classpath (javax.inject:javax.inject:1).
 
-For Java 8 try [Java8Paranamer](https://github.com/rwitzel/Java8Paranamer). This is one class you can copy to your source code. Be aware that even for JDK 8 you have to activate a compiler option: `-parameters`.
+For Java 8 try [Java8Paranamer](https://github.com/rwitzel/Java8Paranamer). Java8Paranamer is a single class you can copy to your source code. Be aware that even for JDK 8 you have to activate a compiler option: `-parameters`.
 
 Then configure a custom CouchDbCrudRepositoryFactory with your chosen paranamer.
 
     factory = new CouchDbCrudRepositoryFactory(new ViewParamsMerger(.. your paranamer here...));
 
-**Q. Do I have to modify my entity classes to make them compatible for CouchDB?**
+**Q. Do I have to modify my entity classes to make them compatible with CouchDB?**
 
 Both Ektorp and LightCouch use JSON serialization frameworks like Jackson and Gson in order to save and load entities.
 Therefore, most probably you have to add annotations to your entity classes.
@@ -227,7 +227,7 @@ A. No, there is no plan to do this because the benefit of the declarative approa
 
 A. The performance is determined by the performance of the underlying CouchDB drivers and the design of CouchDB at all. Thus, a method like `deleteAll` has to fetch all document IDs from the database to delete the documents.
 
-**Q. What is the future of CouchRepository?**
+**Q. How does the future of CouchRepository look like?**
 
 A. CouchRepository was build for a single purpose, and it already serves this purpose. Thus, at the moment there are no plans to add more features. But feel free to suggest improvements or to send in patches. 
     
