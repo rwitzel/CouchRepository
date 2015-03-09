@@ -4,7 +4,7 @@ Some parts of this documentation require knowledge about CouchDB IDs, revisions,
 [![Coveralls coverage status](https://img.shields.io/coveralls/rwitzel/CouchRepository.svg)](https://coveralls.io/r/rwitzel/CouchRepository)
 [![Apache 2](http://img.shields.io/badge/license-Apache%202-red.svg)](http://www.apache.org/licenses/LICENSE-2.0)
 
-When shall I use CouchRepository?
+When should I use CouchRepository?
 ==================================
 
 There are two main use cases.
