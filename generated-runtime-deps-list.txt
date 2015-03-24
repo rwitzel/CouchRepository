@@ -1,29 +1,29 @@
 
 The following files have been resolved:
-   org.apache.httpcomponents:httpclient-cache:jar:4.3:compile
-   org.ektorp:org.ektorp.spring:jar:1.4.2:compile
-   org.aspectj:aspectjweaver:jar:1.6.9:compile
    aopalliance:aopalliance:jar:1.0:compile
-   org.yaml:snakeyaml:jar:1.14:compile
-   com.fasterxml.jackson.core:jackson-core:jar:2.4.3:compile
-   org.apache.httpcomponents:httpcore:jar:4.3:compile
-   org.apache.httpcomponents:httpclient:jar:4.3:compile
-   org.springframework:spring-aop:jar:4.0.7.RELEASE:compile
-   org.lightcouch:lightcouch:jar:0.1.3:compile
-   org.ektorp:org.ektorp:jar:1.4.2:compile
-   net.sourceforge.findbugs:annotations:jar:1.3.2:compile
    com.fasterxml.jackson.core:jackson-annotations:jar:2.4.3:compile
+   com.fasterxml.jackson.core:jackson-core:jar:2.4.3:compile
    com.fasterxml.jackson.core:jackson-databind:jar:2.4.3:compile
-   org.springframework:spring-context:jar:4.0.7.RELEASE:compile
+   com.google.code.gson:gson:jar:2.2.4:compile
    com.thoughtworks.paranamer:paranamer:jar:2.7:compile
-   org.springframework:spring-core:jar:4.0.7.RELEASE:compile
-   org.springframework.data:spring-data-commons:jar:1.9.1.RELEASE:compile
+   commons-codec:commons-codec:jar:1.6:compile
    commons-io:commons-io:jar:2.0.1:compile
    commons-logging:commons-logging:jar:1.1.3:compile
-   org.springframework:spring-expression:jar:4.0.7.RELEASE:compile
-   com.google.code.gson:gson:jar:2.2.4:compile
+   net.sourceforge.findbugs:annotations:jar:1.3.2:compile
    org.apache.commons:commons-lang3:jar:3.3.2:compile
-   commons-codec:commons-codec:jar:1.6:compile
+   org.apache.httpcomponents:httpclient-cache:jar:4.3:compile
+   org.apache.httpcomponents:httpclient:jar:4.3:compile
+   org.apache.httpcomponents:httpcore:jar:4.3:compile
+   org.aspectj:aspectjweaver:jar:1.6.9:compile
+   org.ektorp:org.ektorp.spring:jar:1.4.2:compile
+   org.ektorp:org.ektorp:jar:1.4.2:compile
+   org.lightcouch:lightcouch:jar:0.1.3:compile
    org.slf4j:slf4j-api:jar:1.7.7:compile
+   org.springframework.data:spring-data-commons:jar:1.9.1.RELEASE:compile
+   org.springframework:spring-aop:jar:4.0.7.RELEASE:compile
    org.springframework:spring-beans:jar:4.0.7.RELEASE:compile
+   org.springframework:spring-context:jar:4.0.7.RELEASE:compile
+   org.springframework:spring-core:jar:4.0.7.RELEASE:compile
+   org.springframework:spring-expression:jar:4.0.7.RELEASE:compile
+   org.yaml:snakeyaml:jar:1.14:compile
 
