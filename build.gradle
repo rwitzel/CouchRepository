@@ -1,0 +1,53 @@
+/*
+  TODO
+  - migrate Maven profile coverage
+  - migrate Maven profile release
+ */
+
+apply plugin: 'java'
+apply plugin: 'maven'
+
+group = 'com.github.rwitzel'
+version = '0.9.2-SNAPSHOT'
+
+description = """com.github.rwitzel:couchrepository-core"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+/* we do not want platform specific builds! Thus let's ignore "warning: [options] bootstrap class path not set in conjunction with -source 1.7"
+compileJava {
+  options.fork = true
+  options.forkOptions.executable = "C:\Program Files\Java\jdk1.7.0_21_64bit\bin\javac.exe"
+}
+*/
+
+repositories {
+     maven { url "http://repo.maven.apache.org/maven2" }
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.7'
+    compile group: 'org.springframework', name: 'spring-core', version:'4.0.7.RELEASE'
+    compile group: 'org.springframework', name: 'spring-context', version:'4.0.7.RELEASE' /* instead of BOM */
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version:'1.9.1.RELEASE'
+    compile group: 'org.ektorp', name: 'org.ektorp', version:'1.4.2'
+    compile group: 'org.ektorp', name: 'org.ektorp.spring', version:'1.4.2'
+    compile group: 'org.lightcouch', name: 'lightcouch', version:'0.1.3'
+    compile group: 'com.thoughtworks.paranamer', name: 'paranamer', version:'2.7'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version:'2.4.3'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.4.3'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version:'3.3.2'
+    compile group: 'org.yaml', name: 'snakeyaml', version:'1.14'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version:'1.10.8'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-core', version:'1.3'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-library', version:'1.3'
+    testCompile group: 'org.springframework', name: 'spring-test', version:'4.0.7.RELEASE'
+    testCompile group: 'joda-time', name: 'joda-time', version:'2.6'
+    testCompile group: 'eu.codearte.catch-exception', name: 'catch-exception', version:'1.3.3'
+    testCompile group: 'javax.inject', name: 'javax.inject', version:'1'
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version:'1.1.2'
+    testCompile group: 'org.slf4j', name: 'log4j-over-slf4j', version:'1.7.7'
+    testCompile group: 'org.slf4j', name: 'jcl-over-slf4j', version:'1.7.7'
+}
