@@ -7,6 +7,9 @@ jdk:
 
 services:
   - couchdb
-    
+
+before_install:
+ - chmod +x gradlew
+ 
 after_success:
   - mvn clean test jacoco:report coveralls:report -Pcoverage
