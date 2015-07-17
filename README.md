@@ -2,7 +2,9 @@ Some parts of this documentation require knowledge about CouchDB IDs, revisions,
 
 [![Travis build status](https://travis-ci.org/rwitzel/CouchRepository.svg)](https://travis-ci.org/rwitzel/CouchRepository)
 [![Coveralls coverage status](https://img.shields.io/coveralls/rwitzel/CouchRepository.svg)](https://coveralls.io/r/rwitzel/CouchRepository)
-[![Apache 2](http://img.shields.io/badge/license-Apache%202-red.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Apache 2](http://img.shields.io/badge/license-Apache%202-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.rwitzel/couchrepository-core/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.rwitzel/couchrepository-core/)
+
 
 When should I use CouchRepository?
 ==================================

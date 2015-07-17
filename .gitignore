@@ -3,6 +3,10 @@
 .gradle
 /build
 
-.classpath
+# IDE project files
 .project
-.settings/*
+.settings
+.classpath
+.idea
+*.iml
+
