@@ -30,7 +30,7 @@ dependencies {
     compile group: 'org.slf4j', name: 'slf4j-api', version:'1.7.7'
     compile group: 'org.springframework', name: 'spring-core', version:'4.0.7.RELEASE'
     compile group: 'org.springframework', name: 'spring-context', version:'4.0.7.RELEASE' /* instead of BOM */
-    compile group: 'org.springframework.data', name: 'spring-data-commons', version:'1.9.1.RELEASE'
+    compile group: 'org.springframework.data', name: 'spring-data-commons', version:'2.0.13.RELEASE'
     compile group: 'org.ektorp', name: 'org.ektorp', version:'1.4.2'
     compile group: 'org.ektorp', name: 'org.ektorp.spring', version:'1.4.2'
     compile group: 'org.lightcouch', name: 'lightcouch', version:'0.1.3'
