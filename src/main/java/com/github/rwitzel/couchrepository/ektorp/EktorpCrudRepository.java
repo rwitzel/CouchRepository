@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ektorp.CouchDbConnector;
@@ -96,7 +97,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         return entity; // Hint: the revision is already added resp. updated by Ektorp
     }
 
-    public <S extends T> Iterable<S> save(Iterable<S> entities) {
+    public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
 
         Assert.notNull(entities, "The given list of entities must not be null.");
 
@@ -105,19 +106,20 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         return entities; // Hint: the revision is already added resp. updated by Ektorp
     }
 
-    public T findOne(ID id) {
+    public Optional<T> findById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
         try {
-            return db.get(type, ei.toCouchId(id));
+            return Optional.of(db.get(type, ei.toCouchId(id)));
         } catch (DocumentNotFoundException e) {
             logger.debug("document with ID " + id + " not found", e);
-            return null;
+            return Optional.ofNullable(null);
         }
     }
 
-    public boolean exists(ID id) {
+    @Override
+    public boolean existsById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
@@ -129,7 +131,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         return db.queryView(viewQuery, type);
     }
 
-    public Iterable<T> findAll(Iterable<ID> ids) {
+    public Iterable<T> findAllById(Iterable<ID> ids) {
 
         Assert.notNull(ids, "The given list of IDs must not be null.");
 
@@ -151,7 +153,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
     }
 
     @SuppressWarnings("rawtypes")
-    public void delete(ID id) {
+    public void deleteById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
@@ -169,7 +171,7 @@ public class EktorpCrudRepository<T, ID extends Serializable> implements CouchDb
         db.delete(ei.getCouchId(entity), ei.getRev(entity));
     }
 
-    public void delete(Iterable<? extends T> entities) {
+    public void deleteAll(Iterable<? extends T> entities) {
 
         Assert.notNull(entities, "The given list of entities must not be null.");
 

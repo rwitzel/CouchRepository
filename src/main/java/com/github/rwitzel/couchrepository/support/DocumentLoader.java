@@ -3,6 +3,7 @@ package com.github.rwitzel.couchrepository.support;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
+import java.util.Optional;
 
 import org.yaml.snakeyaml.Yaml;
 
@@ -49,14 +50,14 @@ public class DocumentLoader {
         save(parseYaml(documentContent));
     }
 
-    @SuppressWarnings("unchecked")
     public void save(Map<String, Object> document) {
 
         String documentId = (String) document.get("_id");
 
-        if (repository.exists(documentId)) {
-            Map<String, Object> documentInDb = repository.findOne(documentId);
-            document.put("_rev", documentInDb.get("_rev"));
+        if (repository.existsById(documentId)) {
+            @SuppressWarnings("rawtypes")
+			Optional<Map> documentInDb = repository.findById(documentId);
+            document.put("_rev", documentInDb.get().get("_rev"));
         }
 
         repository.save(document);

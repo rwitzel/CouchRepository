@@ -2,8 +2,10 @@ package com.github.rwitzel.couchrepository.api;
 
 import static java.util.Collections.singleton;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -44,21 +46,21 @@ public abstract class AbstractExoticTest extends AbstractCustomImplementationTes
         exoticRepository.save(doc2);
 
         // then
-        Exotic foundDoc = exoticRepository.findOne(id1);
-        assertNotNull(foundDoc);
-        assertEquals(doc1.getData(), foundDoc.getData());
+        Optional<Exotic> oFoundDoc = exoticRepository.findById(id1);
+        assertTrue(oFoundDoc.isPresent());
+        assertEquals(doc1.getData(), oFoundDoc.get().getData());
 
         // when
-        foundDoc = exoticRepository.findOne(new ExoticId(123, "def", true));
+        oFoundDoc = exoticRepository.findById(new ExoticId(123, "def", true));
 
         // then
-        assertNull(foundDoc);
+        assertFalse(oFoundDoc.isPresent());
 
         // when
-        Iterable<Exotic> foundDocs = exoticRepository.findAll(singleton(id1));
+        Iterable<Exotic> foundDocs = exoticRepository.findAllById(singleton(id1));
 
         // then
-        foundDoc = foundDocs.iterator().next();
+        Exotic foundDoc = foundDocs.iterator().next();
         assertEquals(doc1.getData(), foundDoc.getData());
     }
 
@@ -76,14 +78,14 @@ public abstract class AbstractExoticTest extends AbstractCustomImplementationTes
         exoticRepository.save(doc1);
 
         // then
-        Exotic foundDoc = exoticRepository.findOne(id1);
-        assertEquals(doc1.getData(), foundDoc.getData());
+        Optional<Exotic> foundDoc = exoticRepository.findById(id1);
+        assertEquals(doc1.getData(), foundDoc.get().getData());
 
         // when
         exoticRepository.delete(doc1);
 
         // then
-        assertNull(exoticRepository.findOne(id1));
+        assertFalse(exoticRepository.findById(id1).isPresent());
     }
 
 }

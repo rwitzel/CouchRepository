@@ -73,6 +73,6 @@ public abstract class AbstractAutomaticImplementationTest extends AbstractCouchd
         
         deleteProductRepoAndCreateSomeProducts();
 
-        assertEquals("p1", productRepo.findOne("p1").getId());
+        assertEquals("p1", productRepo.findById("p1").get().getId());
     }
 }
