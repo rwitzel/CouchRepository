@@ -9,7 +9,7 @@ apply plugin: 'maven'
 apply plugin: 'project-report'
 
 group = 'com.github.rwitzel'
-version = '0.9.2-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 
 description = """com.github.rwitzel:couchrepository-core"""
 
