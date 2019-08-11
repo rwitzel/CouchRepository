@@ -179,8 +179,26 @@ Now the creation of the proxy is a bit different.
     productRepository = factory.createRepository(productRepository, customRepository, ProductRepository.class);
 
 
+
+How to develop
+==============
+
+First start a local CouchDB server (check `http://127.0.0.1:5984/_utils/`).
+
+Add credentials in `LightCouchTestConfiguration` and `EktorpTestConfiguration` as appropriate:
+```java
+properties.setUsername("admin");
+properties.setPassword("admin");
+```
+
+Then run the tests.
+```
+mvn clean install
+```
+
+
 More Questions and Answers
-=====================
+==========================
 
 **Q. Which CouchDB drivers are supported?** 
 
