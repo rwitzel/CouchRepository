@@ -35,7 +35,7 @@ You may want to checkout the source code and have a look at the tests to find wo
 Prerequisites
 -------------
 
-CouchRepository requires Java 7 or higher.
+CouchRepository requires Java 8 or higher.
 
 Basics
 ------
@@ -45,7 +45,7 @@ Here is a short example that assumes you use Ektorp as CouchDB driver. The code 
 First of all you add the needed dependencies to your project.
 The dependencies for Ektorp must be added explicitly because you can choose between Ektorp and LightCouch.
 
-    compile 'com.github.rwitzel:couchrepository-core:0.9.1'
+    compile 'com.github.rwitzel:couchrepository-core:1.0.0'
     compile 'org.ektorp:org.ektorp:1.4.2'
     compile 'org.ektorp:org.ektorp.spring:1.4.2'
 

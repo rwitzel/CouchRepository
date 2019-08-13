@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
 import org.lightcouch.CouchDbClient;
@@ -88,7 +89,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
         return entity;
     }
 
-    public <S extends T> Iterable<S> save(Iterable<S> entities) {
+    public <S extends T> Iterable<S> saveAll(Iterable<S> entities) {
 
         Assert.notNull(entities, "The given list of entities must not be null.");
 
@@ -97,19 +98,19 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
         return entities;
     }
 
-    public T findOne(ID id) {
+    public Optional<T> findById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
         try {
-            return couchDbClient.find(type, ei.toCouchId(id));
+            return Optional.of(couchDbClient.find(type, ei.toCouchId(id)));
         } catch (NoDocumentException e) {
             logger.debug("document with ID " + id + " not found", e);
-            return null;
+            return Optional.ofNullable(null);
         }
     }
 
-    public boolean exists(ID id) {
+    public boolean existsById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
@@ -120,7 +121,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
         return couchDbClient.view(designDocument() + "by_id").reduce(false).includeDocs(true).query(type);
     }
 
-    public Iterable<T> findAll(Iterable<ID> ids) {
+    public Iterable<T> findAllById(Iterable<ID> ids) {
 
         Assert.notNull(ids, "The given list of IDs must not be null.");
 
@@ -139,7 +140,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
     }
 
     @SuppressWarnings("rawtypes")
-    public void delete(ID id) {
+    public void deleteById(ID id) {
 
         Assert.notNull(id, "The given ID must not be null.");
 
@@ -176,7 +177,7 @@ public class LightCouchCrudRepository<T, ID extends Serializable> implements Cou
     }
 
     @SuppressWarnings("rawtypes")
-    public void delete(Iterable<? extends T> entities) {
+    public void deleteAll(Iterable<? extends T> entities) {
 
         Assert.notNull(entities, "The given list of entities must not be null.");
 

@@ -16,6 +16,7 @@ import java.math.BigDecimal;
 import java.math.MathContext;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import org.joda.time.DateTime;
@@ -51,22 +52,22 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
         Product newProduct = newProduct("Oak table 1922", "Lumberjack Inc.");
 
         // when
-        Product existingProduct = productRepo.findOne(newProduct.getId());
-        if (existingProduct != null) {
-            productRepo.delete(existingProduct);
+        Optional<Product> existingProduct = productRepo.findById(newProduct.getId());
+        if (existingProduct.isPresent()) {
+            productRepo.delete(existingProduct.get());
         }
 
         // then
-        assertNull(productRepo.findOne(newProduct.getId()));
+        assertFalse(productRepo.findById(newProduct.getId()).isPresent());
 
         // when
         productRepo.save(newProduct);
 
         // then
-        assertTrue(productRepo.exists(newProduct.getId()));
-        Product foundProduct = productRepo.findOne(newProduct.getId());
-        assertNotNull(foundProduct);
-
+        assertTrue(productRepo.existsById(newProduct.getId()));
+        Optional<Product> oFoundProduct = productRepo.findById(newProduct.getId());
+        assertTrue(oFoundProduct.isPresent());
+        Product foundProduct = oFoundProduct.get(); 
         assertEquals(newProduct.getComments(), foundProduct.getComments());
         assertEquals(newProduct.isHidden(), foundProduct.isHidden());
         assertEquals(newProduct.getId(), foundProduct.getId());
@@ -84,8 +85,8 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
         productRepo.delete(foundProduct);
 
         // then
-        assertFalse(productRepo.exists(newProduct.getId()));
-        assertNull(productRepo.findOne(foundProduct.getId()));
+        assertFalse(productRepo.existsById(newProduct.getId()));
+        assertFalse(productRepo.findById(foundProduct.getId()).isPresent());
     }
 
     @Test
@@ -98,17 +99,17 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
         Product newProduct1 = newProduct("Oak table 1720", "Lumberjack Inc.");
         Product newProduct2 = newProduct("Oak table 1721", "Lumberjack Inc.");
         Product newProduct3 = newProduct("Oak table 1722", "Lumberjack Inc.");
-        productRepo.save(asList(newProduct1, newProduct2, newProduct3));
+        productRepo.saveAll(asList(newProduct1, newProduct2, newProduct3));
 
         // when
         List<String> productIds = asList(newProduct1.getId(), newProduct2.getId());
-        List<Product> foundProducts = toList(productRepo.findAll(productIds));
+        List<Product> foundProducts = toList(productRepo.findAllById(productIds));
 
         // then
         assertEqualsIdSet(productIds, foundProducts);
 
         // when
-        productRepo.delete(asList(foundProducts.get(0), foundProducts.get(1)));
+        productRepo.deleteAll(asList(foundProducts.get(0), foundProducts.get(1)));
 
         // then
         assertEqualsIdSet(singleton(newProduct3.getId()), toList(productRepo.findAll()));
@@ -124,19 +125,19 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
         Product newProduct1 = newProduct("Oak table 1720", "Lumberjack Inc.");
         Product newProduct2 = newProduct("Oak table 1721", "Lumberjack Inc.");
         Product newProduct3 = newProduct("Oak table 1722", "Lumberjack Inc.");
-        productRepo.save(asList(newProduct1, newProduct2, newProduct3));
+        productRepo.saveAll(asList(newProduct1, newProduct2, newProduct3));
         
         String oldRevision2 = newProduct2.getRevision(); 
         String oldRevision3 = newProduct3.getRevision(); 
         newProduct2.setHidden(!newProduct2.isHidden());
         newProduct3.setHidden(!newProduct3.isHidden());
 
-        productRepo.save(asList(newProduct1, newProduct2, newProduct3));
+        productRepo.saveAll(asList(newProduct1, newProduct2, newProduct3));
 
         // when
         newProduct2.setRevision(oldRevision2);
         newProduct3.setRevision(oldRevision3);
-        catchException(productRepo).save(asList(newProduct1, newProduct2, newProduct3));
+        catchException(productRepo).saveAll(asList(newProduct1, newProduct2, newProduct3));
         assertTrue(caughtException() instanceof BulkOperationException );
         BulkOperationException exception = caughtException();
         assertEquals(2, exception.getErrors().size());
@@ -160,7 +161,7 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
 
         Product newProduct1 = newProduct("Oak table 1822", newManufacturer.getId());
         Product newProduct2 = newProduct("Oak table 1823", newManufacturer.getId());
-        productRepo.save(asList(newProduct1, newProduct2));
+        productRepo.saveAll(asList(newProduct1, newProduct2));
 
         // then
         assertEquals(2, productRepo.count());
@@ -198,13 +199,13 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
         Product newProduct = newProduct("Oak table 1822", "Lumberjack Inc.");
         productRepo.save(newProduct);
 
-        assertTrue(productRepo.exists(newProduct.getId()));
+        assertTrue(productRepo.existsById(newProduct.getId()));
 
         // when
-        productRepo.delete(newProduct.getId());
+        productRepo.deleteById(newProduct.getId());
 
         // then
-        assertFalse(productRepo.exists(newProduct.getId()));
+        assertFalse(productRepo.existsById(newProduct.getId()));
     }
 
     private Manufacturer newManufacturer(String manufacturerId) {
@@ -272,7 +273,7 @@ public abstract class AbstractCrudRepositoryTest extends AbstractJUnit4SpringCon
 
         Product newProduct1 = newProduct("Oak table 1822", newManufacturer.getId());
         Product newProduct2 = newProduct("Oak table 1823", newManufacturer.getId());
-        productRepo.save(asList(newProduct1, newProduct2));
+        productRepo.saveAll(asList(newProduct1, newProduct2));
     }
     
     @Test
