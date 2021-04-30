@@ -15,7 +15,7 @@
     <java-version>1.8</java-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <spring>5.0.12.RELEASE</spring>
+    <spring>5.0.19.RELEASE</spring>
     <jackson-2-version>2.10.0.pr1</jackson-2-version>
     <ektorp.version>1.5.0</ektorp.version>
     <org.slf4j-version>1.7.7</org.slf4j-version>
